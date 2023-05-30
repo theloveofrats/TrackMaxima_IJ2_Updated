@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TrackMaxima_IJ2">
+    <output-path>$PROJECT_DIR$/classes/artifacts/TrackMaxima_IJ2</output-path>
+    <root id="archive" name="TrackMaxima_IJ2.jar">
+      <element id="module-output" name="Track_Maxima" />
+    </root>
+  </artifact>
+</component>

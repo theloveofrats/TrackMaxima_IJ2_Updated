@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="beats.ltr6.imagej.TrackerForm">
+  <grid id="27dc6" binding="masterPanel" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="470" height="601"/>
+    </constraints>
+    <properties>
+      <font name="Arial" size="12" style="0"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="f3b34" binding="Tabs">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="de89d" binding="autoTrackingPanel" layout-manager="GridLayoutManager" row-count="13" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="5" left="5" bottom="5" right="5"/>
+            <constraints>
+              <tabbedpane title="Automatic tracking"/>
+            </constraints>
+            <properties/>
+            <border type="none">
+              <title-color color="-16777216"/>
+            </border>
+            <children>
+              <component id="cdd8e" class="javax.swing.JComboBox" binding="LightDarkBox">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Light Objects"/>
+                    <item value="Dark Objects"/>
+                  </model>
+                  <toolTipText value="Select light objects if your cells are lighter than the background, and dark objects if they are darker."/>
+                </properties>
+              </component>
+              <component id="f548" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="I want to track"/>
+                </properties>
+              </component>
+              <component id="1ce64" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Threshold"/>
+                </properties>
+              </component>
+              <component id="ca54b" class="javax.swing.JTextField" binding="ThresholdField">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="14.0"/>
+                  <toolTipText value="Minimum intensity difference to consider as a cell. Raise this to get rid of false positives. The ideal setting probably contains a few false positives that can be filtered out later."/>
+                </properties>
+              </component>
+              <component id="e88d6" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Blur"/>
+                </properties>
+              </component>
+              <component id="907d0" class="javax.swing.JTextField" binding="blurField">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="6.0"/>
+                  <toolTipText value="Raise this value if you are picking up small (&lt;&lt;cell size), intense false positives. "/>
+                </properties>
+              </component>
+              <component id="1ed4c" class="javax.swing.JCheckBox" binding="useDoGCheckBox" default-binding="true">
+                <constraints>
+                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Use DoG?"/>
+                  <toolTipText value="Difference of Gaussians performs a second, larger blur, and takes the difference between the two. Good for fluorescence, terrible for phase contrast."/>
+                </properties>
+              </component>
+              <component id="f1bbb" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Max. missing frames"/>
+                  <toolTipText value="Maximum number of frames that a cell can go undetected without being declared permanently lost by the tracker."/>
+                </properties>
+              </component>
+              <component id="cbdce" class="javax.swing.JTextField" binding="framesField">
+                <constraints>
+                  <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="2"/>
+                  <toolTipText value="Maximum number of frames that a cell can go undetected without being declared permanently lost by the tracker. Unless your cells move less than 1/2 cell length/frame, this should be kept below 4 to avoid tracks being mixed up."/>
+                </properties>
+              </component>
+              <component id="ec744" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Max. speed"/>
+                  <toolTipText value="To aid the tracker, it will assume that cell speed never exceeds this."/>
+                </properties>
+              </component>
+              <component id="ce7e2" class="javax.swing.JTextField" binding="MaxSpeedField">
+                <constraints>
+                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="21"/>
+                  <toolTipText value="To aid the tracker, it will assume that cell speed never exceeds this value. As a rule of thumb, check how many pixels a fast cell can move in a frame, and use 150% the value."/>
+                </properties>
+              </component>
+              <component id="b8a2a" class="javax.swing.JButton" binding="trackButton" default-binding="true">
+                <constraints>
+                  <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Track"/>
+                </properties>
+              </component>
+              <component id="cbe97" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Min. speed"/>
+                  <toolTipText value="Tracks with a lower average speed than this will be removed from the dataset automatically"/>
+                </properties>
+              </component>
+              <component id="dd097" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Min. frames"/>
+                  <toolTipText value="Tracks with fewer than this number of frames will be removed from the dataset automatically"/>
+                </properties>
+              </component>
+              <component id="beac8" class="javax.swing.JTextField" binding="MinSpeedField">
+                <constraints>
+                  <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="1.5"/>
+                  <toolTipText value="Tracks with a lower average speed than this will be removed from the dataset automatically. This includes hand-tracked cells."/>
+                </properties>
+              </component>
+              <component id="ba767" class="javax.swing.JTextField" binding="MinFramesField">
+                <constraints>
+                  <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="12"/>
+                  <toolTipText value="Tracks with fewer than this number of frames will be removed from the dataset automatically. This includes hand-tracked cells."/>
+                </properties>
+              </component>
+              <hspacer id="11174">
+                <constraints>
+                  <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="3094">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <vspacer id="73a95">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <vspacer id="2e6dd">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="7d26a" class="javax.swing.JButton" binding="importTrackButton" default-binding="true">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Import Tracks"/>
+                  <toolTipText value="Import tracks from a file. Supports mTrackJ data. Make sure your image is calibrated the same way as when the file was saved, as the importer will attempt to reverse-engineer pixel positions of the tracking points from the currently specified distance units."/>
+                </properties>
+              </component>
+              <component id="34af2" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" style="1"/>
+                  <text value="--- OR ---"/>
+                </properties>
+              </component>
+              <component id="291c0" class="javax.swing.JCheckBox" binding="medianSubtraction">
+                <constraints>
+                  <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Median subtraction?"/>
+                  <toolTipText value="Enhances fast objects and stops dirt getting tracked. Do not use if your cells spend &gt;10% of the image in one place, or if confluency is very high."/>
+                </properties>
+              </component>
+              <component id="9998b" class="javax.swing.JLabel" binding="calibrationWarning">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-64256"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="9b535" class="javax.swing.JButton" binding="calibrationOKButton">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <hideActionText value="false"/>
+                  <text value="OK"/>
+                  <visible value="false"/>
+                </properties>
+              </component>
+              <component id="a8e4e" class="javax.swing.JCheckBox" binding="previewCheckBox" default-binding="true">
+                <constraints>
+                  <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="true"/>
+                  <text value="Preview"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="1a3eb" binding="overlayPanel" layout-manager="GridLayoutManager" row-count="17" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Overlay"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="665aa" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Fade/frame"/>
+                </properties>
+              </component>
+              <component id="d856d" class="javax.swing.JTextField" binding="trackFadeField">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0.1"/>
+                  <toolTipText value="How much to fade the older parts of tracking lines by. 0 will show the full track, 1 will show only the last step."/>
+                </properties>
+              </component>
+              <component id="1a815" class="javax.swing.JRadioButton" binding="trackingLinesCheck">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text value="Tracking lines"/>
+                  <toolTipText value="Draw tracking lines to show where the cell has been."/>
+                </properties>
+              </component>
+              <vspacer id="76ad2">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <grid id="46f97" binding="negativeColourPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="80" height="30"/>
+                    <preferred-size width="80" height="30"/>
+                    <maximum-size width="80" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-8000276"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <component id="f44e8" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Positive colour"/>
+                </properties>
+              </component>
+              <component id="10d48" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Negative colour"/>
+                </properties>
+              </component>
+              <component id="e3a59" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Neutral colour"/>
+                </properties>
+              </component>
+              <grid id="eb8c6" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="de8e1" class="javax.swing.JButton" binding="drawOverlayButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Draw overlay"/>
+                      <toolTipText value="Draws the overlay accoring to the parameters specified above."/>
+                    </properties>
+                  </component>
+                  <component id="6fcb" class="javax.swing.JButton" binding="drawNumbersButton">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Draw numbers"/>
+                      <toolTipText value="Draw the ID number of each cell track next to it on the image."/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <vspacer id="ef09">
+                <constraints>
+                  <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <grid id="be65a" binding="positiveColourPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="80" height="30"/>
+                    <preferred-size width="80" height="30"/>
+                    <maximum-size width="80" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-1275127"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="fe5c4" binding="neutralColourPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="80" height="30"/>
+                    <preferred-size width="80" height="30"/>
+                    <maximum-size width="80" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-5857044"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <component id="19d06" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Overlay size"/>
+                </properties>
+              </component>
+              <component id="a52d2" class="javax.swing.JComboBox" binding="overlaySizeChooser">
+                <constraints>
+                  <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Very Fine"/>
+                    <item value="Fine"/>
+                    <item value="Medium"/>
+                    <item value="Large"/>
+                    <item value="Very Large"/>
+                  </model>
+                  <selectedIndex value="1"/>
+                  <toolTipText value="Changes overlay size, so that you can find an overlay that looks good with your data."/>
+                </properties>
+              </component>
+              <component id="c809a" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Averaging half-window"/>
+                </properties>
+              </component>
+              <component id="8f9fa" class="javax.swing.JTextField" binding="calculationWindowField">
+                <constraints>
+                  <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="4"/>
+                  <toolTipText value="The size of the averaging window when calculating instantaneous values such as speed and cos theta. Applies to circles and some analysis output, but not to tracking lines or raw data."/>
+                </properties>
+              </component>
+              <component id="efb19" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Window type"/>
+                </properties>
+              </component>
+              <component id="5db24" class="javax.swing.JRadioButton" binding="trackingCircleCheck">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="true"/>
+                  <text value="Tracking circles"/>
+                  <toolTipText value="Draw a circle overlay around each tracked cell, with size showing speed if there is no tracking line."/>
+                </properties>
+              </component>
+              <vspacer id="de03b">
+                <constraints>
+                  <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="7415f" class="javax.swing.JTextField" binding="angleField">
+                <constraints>
+                  <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                  <toolTipText value="This number will be used as the zero angle for all directional calculations."/>
+                </properties>
+              </component>
+              <component id="ee884" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Forward angle"/>
+                </properties>
+              </component>
+              <component id="1124e" class="javax.swing.JComboBox" binding="directionSpeedDD">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Direction"/>
+                    <item value="Speed"/>
+                  </model>
+                  <toolTipText value="Switch between colour-coding the overlay based on direction of movement or speed."/>
+                </properties>
+              </component>
+              <component id="f52be" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Colour-coding"/>
+                </properties>
+              </component>
+              <component id="8de2b" class="javax.swing.JComboBox" binding="calcWindowTypeChooser">
+                <constraints>
+                  <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Boxcar"/>
+                    <item value="Gaussian"/>
+                    <item value="Tukey"/>
+                  </model>
+                  <toolTipText value="The type of weighting to give to points in the averaging window. Boxcar gives all points equal weights. Gaussian follows a normal distribution, with sigma=half-window/2. Tukey uses a bounded cosine filter, giving more weight to nearby points (and less to distant ones) than a Gaussian."/>
+                </properties>
+              </component>
+              <grid id="dbf07" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="e9aee" class="javax.swing.JButton" binding="selectTargetPointButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Select target point"/>
+                      <toolTipText value="Positive migration will be based on alignment toward (or away from) a selected point on the image, rather than overall direction. This might be useful when tracking toward a small known source of attractant, such as a micropipette."/>
+                    </properties>
+                  </component>
+                  <component id="6118c" class="javax.swing.JButton" binding="clearTargetPointButton">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Clear target point"/>
+                      <toolTipText value="If you have defined a target point, this clears it and returns you to calculations based on the forward angle above."/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <component id="1383f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Migration to a point"/>
+                </properties>
+              </component>
+              <component id="17477" class="javax.swing.JRadioButton" binding="maskOverlayButton">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <selected value="false"/>
+                  <text value="Cell mask overlay"/>
+                  <toolTipText value="Draw tracking lines to show where the cell has been."/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="deb28" binding="handTrackingPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Hand tracking"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="1785" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="a10c4" class="javax.swing.JButton" binding="deleteTracksButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Delete track"/>
+                      <toolTipText value="Puts the tracker into delete mode. Each track the user click on will be removed. Press done to return to normal mode."/>
+                    </properties>
+                  </component>
+                  <vspacer id="f3d6">
+                    <constraints>
+                      <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="c3640" class="javax.swing.JButton" binding="trackingDoneButton">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Done"/>
+                      <toolTipText value="Clears all special hand-tracking modes and returns the tracker to normal function."/>
+                    </properties>
+                  </component>
+                  <component id="8352d" class="javax.swing.JButton" binding="mergeTracksButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Merge Tracks"/>
+                      <toolTipText value="Allows the user to fix tracks that are broken into sections by merging them. To use, click the button, then click on two points in different tracks, with the first point on an earlier frame than the second. Everything up to the first point selected will be joined to everything after the second point selected, with the intervening points interpolated."/>
+                    </properties>
+                  </component>
+                  <component id="47fe7" class="javax.swing.JButton" binding="newTrackButton">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Add new track"/>
+                      <toolTipText value="Allows the user to manually add a new track to the image. Note that this is not a dedicated manual tracking plug-in, so this feature is best used to tidy up automated tracking."/>
+                    </properties>
+                  </component>
+                  <component id="6e540" class="javax.swing.JButton" binding="cutAfterButton">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Cut track after point"/>
+                      <toolTipText value="Removes all points in a track that occur after the selected point. Press done to return to normal mode."/>
+                    </properties>
+                  </component>
+                  <component id="53903" class="javax.swing.JButton" binding="cutBeforeButton">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Cut track before point"/>
+                      <toolTipText value="Removes all points in a track that occur before the selected point. Press done to return to normal mode."/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="2d830" binding="analysisPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Analysis"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="5f4a7" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="327ff" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="400" height="180"/>
+                        <preferred-size width="400" height="180"/>
+                        <maximum-size width="400" height="180"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="4e0c8" class="javax.swing.JButton" binding="displaySummaryButton" default-binding="true">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Display summary"/>
+                        </properties>
+                      </component>
+                      <component id="7e099" class="javax.swing.JRadioButton" binding="speedRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <selected value="true"/>
+                          <text value="Speed"/>
+                        </properties>
+                      </component>
+                      <component id="51a40" class="javax.swing.JRadioButton" binding="cosThetaRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <enabled value="true"/>
+                          <selected value="true"/>
+                          <text value="Cos (theta)"/>
+                        </properties>
+                      </component>
+                      <component id="410e0" class="javax.swing.JRadioButton" binding="directednessRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <selected value="true"/>
+                          <text value="Directedness"/>
+                        </properties>
+                      </component>
+                      <component id="73909" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" style="1"/>
+                          <text value="Summary statistics:"/>
+                        </properties>
+                      </component>
+                      <component id="20a59" class="javax.swing.JButton" binding="graphMomentsButton">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Position dependency of stats"/>
+                        </properties>
+                      </component>
+                      <component id="6c942" class="javax.swing.JRadioButton" binding="projectedSpeedRadioButton">
+                        <constraints>
+                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <selected value="true"/>
+                          <text value="Projected speed"/>
+                        </properties>
+                      </component>
+                      <component id="66ed2" class="javax.swing.JRadioButton" binding="chemotacticIndexRadioButton" default-binding="true">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <selected value="true"/>
+                          <text value="Chemotactic Efficiency Index"/>
+                        </properties>
+                      </component>
+                      <component id="672de" class="javax.swing.JButton" binding="projectedSpeedHeatmapButton" default-binding="true">
+                        <constraints>
+                          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Projected speed heatmap"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="11774" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <grid id="33c85" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                            <minimum-size width="400" height="180"/>
+                            <preferred-size width="400" height="180"/>
+                            <maximum-size width="400" height="180"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="d26f2" class="javax.swing.JButton" binding="msdButton">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Autocorrelation"/>
+                            </properties>
+                          </component>
+                          <component id="b2708" class="javax.swing.JLabel">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <font name="Arial" style="1"/>
+                              <text value="Track ensemble graphs"/>
+                            </properties>
+                          </component>
+                          <component id="b3442" class="javax.swing.JButton" binding="meanSquaredDisplacementButton" default-binding="true">
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Mean squared displacement"/>
+                            </properties>
+                          </component>
+                          <component id="e037" class="javax.swing.JButton" binding="spiderPlotButton" default-binding="true">
+                            <constraints>
+                              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Spider plot"/>
+                            </properties>
+                          </component>
+                          <component id="57d6d" class="javax.swing.JButton" binding="transitionMatrixButton" default-binding="true">
+                            <constraints>
+                              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Transition matrix"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                    </children>
+                  </grid>
+                  <grid id="a0592" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <hspacer id="b6a6">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="f4d65" binding="advancedPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Advanced"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="6dfe3" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="77f82" class="javax.swing.JComboBox" binding="dotAlgorithmComboBox">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model>
+                        <item value="Greedy"/>
+                        <item value="Hungarian"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="3e573" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Point joiner"/>
+                    </properties>
+                  </component>
+                  <component id="c6cc3" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Min. point separation"/>
+                    </properties>
+                  </component>
+                  <component id="f761f" class="javax.swing.JTextField" binding="minPointSepField">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="0"/>
+                    </properties>
+                  </component>
+                  <component id="c9c89" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Speed weight"/>
+                    </properties>
+                  </component>
+                  <component id="5ea52" class="javax.swing.JTextField" binding="speedFractionField">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="0.3"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="e6295" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="828b7" class="javax.swing.JButton" binding="overwriteDefaultSettingsButton" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Overwrite default settings"/>
+                    </properties>
+                  </component>
+                  <hspacer id="7eed6">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <vspacer id="403fb">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="b2289" class="javax.swing.JCheckBox" binding="saveMasksCheckBox" default-binding="true">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Save masks"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+      <grid id="921a4" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="eb0c1" class="javax.swing.JLabel" binding="cellCountLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Tracks: 0"/>
+            </properties>
+          </component>
+          <component id="e08c8" class="javax.swing.JButton" binding="displayTrackTableButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="Display Full Track Table"/>
+            </properties>
+          </component>
+          <hspacer id="d4d5a">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <vspacer id="bc4cc">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+    </children>
+  </grid>
+</form>
